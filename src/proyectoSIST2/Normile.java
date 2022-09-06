@@ -2,6 +2,7 @@ package proyectoSIST2;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ public class Normile {
 	  public static void main(String args[]) throws Exception {
 	       
 		 int[][] caca = read(new File ("imgEdit2.pgm"));
-		 //346 x839  
+		 //346 x 839  
 		 System.out.println("uno "+caca[0][1] + " lenght "+caca.length +" lenght 2 "+caca[0].length);
 		 
 		
@@ -24,7 +25,53 @@ public class Normile {
 			        }
 			        bw.flush();
 			    } catch (IOException e) {}
+			    
+		//	     6x6
+		//   6 6 6 6 6 6	    
+		//   6 4 4 4 4 6 
+		//   6 4 4 4 4 6
+		//   6 4 4 4 4 6 
+		//   6 4 4 4 4 6
+		//   6 6 6 6 6 6
+			    
+		// 		0x5
+		//	    0 0 0 0 0 
+			    
+	
+		int[][] caca2 = new int[caca.length+2][caca[0].length+2];
 		
+		//Linea primera fila
+		//Rellenamos las lineas nuevas
+		// Linea de arriba
+		caca2[0][0]=0;
+		caca2[0][caca2[0].length-1]=0;
+		
+		for (int j = 1; j < caca2[0].length-1; j++) {
+			caca2[0][j]	= 255;
+				
+					
+		}
+				
+				
+			
+		
+		System.out.println("matri2");
+		for (int i = 0; i < caca2.length; i++) {
+			for (int j = 0; j < caca2[0].length; j++) {
+				
+				System.out.print(caca2[i][j]);
+				
+			}
+			break;
+		}
+		
+		for (int i = 0; i < caca.length; i++) {
+			for (int j = 0; j < caca[0].length; j++) {
+				
+				//System.out.print(caca[i][j]);
+				
+			}
+		}
 		 
 //		 for (int i = 0; i < caca.length; i++) {
 //			for (int j = 0; j < caca[0].length; j++) {
