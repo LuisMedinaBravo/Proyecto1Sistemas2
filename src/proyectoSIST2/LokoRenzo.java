@@ -1,37 +1,28 @@
 package proyectoSIST2;
 
+import java.io.File;
+
 public class LokoRenzo {
 	public static void main(String args[]) throws Exception {
 
 		// iniciar hilos
 		Suma s1, s2;
 
-		int[][] hola = new int[5][4];
-		int largoFila = hola.length;
 
-		largoFila = largoFila - 1;
-
-		for (int i = 0; i < hola.length; i++) {
-			for (int j = 0; j < hola[i].length; j++) {
-
-				System.out.print(hola[i][j] = j);
-
-			}
-            System.out.println("");
-
-		}
-		System.out.println();
-
-		s1 = new Suma(1);
-		s2 = new Suma(2);
+		PGMIO pmgEditor = new PGMIO();
+		int[][] matrizLeida = pmgEditor.read(new File ("imgEdit.pgm"));
+		s1 = new Suma(1, matrizLeida);
+		
+		//s2 = new Suma(2);
 
 		s1.start();
-		s2.start();
+		
+		//s2.start();
 
 		try {
 
 			s1.join();
-			s2.join();
+			//s2.join();
 
 		} catch (Exception e) {
 
@@ -39,6 +30,12 @@ public class LokoRenzo {
 			// imprimir.Imprimir();
 
 		}
+		//Escribimos el resultado
+		while (s1.fin==false) {
+			
+			
+		}
+		pmgEditor.write(s1.getImagenResultado(), new File ("imagenSalidaPruebaErosionar.pgm"));
 
 	}
 }
