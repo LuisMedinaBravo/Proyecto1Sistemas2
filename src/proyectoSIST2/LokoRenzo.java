@@ -10,7 +10,7 @@ public class LokoRenzo {
 
 
 		PGMIO pmgEditor = new PGMIO();
-		int[][] matrizLeida = pmgEditor.read(new File ("imgEdit.pgm"));
+		int[][] matrizLeida = pmgEditor.read(new File ("imgEdit2.pgm"));
 		s1 = new Suma(1, matrizLeida);
 		
 		//s2 = new Suma(2);
@@ -35,7 +35,7 @@ public class LokoRenzo {
 			
 			
 		}
-		pmgEditor.write(s1.getImagenResultado(), new File ("imagenSalidaPruebaErosionar.pgm"));
+		pmgEditor.write(s1.getImagenResultado(), new File ("imagenSalida2PruebaErosionarElemento3.pgm"));
 
 	}
 }
