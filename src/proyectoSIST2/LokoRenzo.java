@@ -35,7 +35,7 @@ public class LokoRenzo {
 			
 			
 		}
-		pmgEditor.write(s1.getImagenResultado(), new File ("imagenSalida2PruebaErosionarElemento3.pgm"));
+		pmgEditor.write(s1.getImagenResultado(), new File ("imagenSalida2PruebaDilatarElemento6.pgm"));
 
 	}
 }

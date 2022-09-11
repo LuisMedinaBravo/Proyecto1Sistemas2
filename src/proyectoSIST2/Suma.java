@@ -77,10 +77,10 @@ public int[][] getImagenResultado() {
 			  //imprimirMatriz(arrayErosionado);
 			 
 			//Matriz de image PMG
-			//int[][] arrayDilatado = dilatacionElem2(imagenPGM);
-			//this.imagenResultado = arrayDilatado;
-			int[][] arrayErosionado = erosionElem3(imagenPGM);
-			this.imagenResultado = arrayErosionado;
+			int[][] arrayDilatado = dilatacionElem6(imagenPGM);
+			this.imagenResultado = arrayDilatado;
+			//int[][] arrayErosionado = erosionElem6(imagenPGM);
+			//this.imagenResultado = arrayErosionado;
 			fin=true;
 		}
 	}
@@ -521,104 +521,222 @@ public int[][] getImagenResultado() {
 		return arrayDilatado;
 	}	
 	//Signo izquierda-arriba
-	private int[][] erosionElem3(int[][] arrayInicial) {
+	
+	
+	//Signo X
+	private int[][] dilatacionElem6(int[][] arrayInicial) {
 		// Creamos el array que guardara los resultados
-		int[][] arrayErosionado = new int[arrayInicial.length][arrayInicial[0].length];
+		int[][] arrayDilatado = new int[arrayInicial.length][arrayInicial[0].length];
 		for (int i = 0; i < arrayInicial.length; i++) {
 			for (int j = 0; j < arrayInicial[i].length; j++) {
 				// Copiamos valores para los casos donde ninguna condicion se cumpla.
-				arrayErosionado[i][j] = arrayInicial[i][j];
+				arrayDilatado[i][j] = arrayInicial[i][j];
 				// Primera Fila
 				if (i == 0) {
 					// Primera Columna
 					if (j == 0) {
+						// Derecha y Abajo
+						if (arrayInicial[i + 1][j + 1] > arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i + 1][j + 1];
+
 
 					}
 					// Ultima Columna
 					else if (j == arrayInicial[i].length - 1) {
-						// Izquierda
-						if (arrayInicial[i][j - 1] < arrayInicial[i][j])
-							arrayErosionado[i][j] = arrayInicial[i][j - 1];
-						
+						// Izquierda y Abajo
+						if (arrayInicial[i + 1][j - 1] > arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i + 1][j - 1];
+
 					}
 					// Otras columnas
 					else {
-						// Derecha
-						if (arrayInicial[i][j + 1] < arrayInicial[i][j])
-							arrayErosionado[i][j] = arrayInicial[i][j + 1];
-						// Izquierda
-						if (arrayInicial[i][j - 1] < arrayInicial[i][j])
-							arrayErosionado[i][j] = arrayInicial[i][j - 1];						
+						// Derecha y Abajo
+						if (arrayInicial[i + 1][j + 1] > arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i + 1][j + 1];
+						// Izquierda y Abajo
+						if (arrayInicial[i + 1][j - 1] > arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i + 1][j - 1];
+						
 					}
+					
 
 				}
 				// Ultima fila
 				else if (i == arrayInicial.length - 1) {
 					// Primera Columna
 					if (j == 0) {
-						
-						// Arriba
-						if (arrayInicial[i - 1][j] < arrayInicial[i][j])
-							arrayErosionado[i][j] = arrayInicial[i - 1][j];
+						// Derecha y Arriba
+						if (arrayInicial[i - 1][j + 1] > arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i - 1][j + 1];
+
 
 					}
 					// Ultima Columna
 					else if (j == arrayInicial[i].length - 1) {
-						// Izquierda
-						if (arrayInicial[i][j - 1] < arrayInicial[i][j])
-							arrayErosionado[i][j] = arrayInicial[i][j - 1];
-						// Arriba
-						if (arrayInicial[i - 1][j] < arrayInicial[i][j])
-							arrayErosionado[i][j] = arrayInicial[i - 1][j];
+
+						// Izquierda y Arriba
+						if (arrayInicial[i - 1][j - 1] > arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i - 1][j - 1];
+					
 					}
 					// Otras columnas
 					else {
-						
-						// Arriba
-						if (arrayInicial[i - 1][j] < arrayInicial[i][j])
-							arrayErosionado[i][j] = arrayInicial[i - 1][j];
-
-						// Izquierda
-						if (arrayInicial[i][j - 1] < arrayInicial[i][j])
-							arrayErosionado[i][j] = arrayInicial[i][j - 1];
+						// Derecha y Arriba
+						if (arrayInicial[i - 1][j + 1] > arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i - 1][j + 1];
+						// Izquierda y Arriba
+						if (arrayInicial[i - 1][j - 1] > arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i - 1][j - 1];
 					}
 
 					// Las demas filas
 				} else {
 					// Primera Columna
 					if (j == 0) {
-						
-						// Arriba
-						if (arrayInicial[i - 1][j] < arrayInicial[i][j])
-							arrayErosionado[i][j] = arrayInicial[i - 1][j];
-						
+						// Derecha y Arriba
+						if (arrayInicial[i - 1][j + 1] > arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i - 1][j + 1];
+						// Derecha y Abajo
+						if (arrayInicial[i + 1][j + 1] > arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i + 1][j + 1];
 
 					} // Ultima Columna
 					else if (j == arrayInicial[i].length - 1) {
-						// Izquierda
-						if (arrayInicial[i][j - 1] < arrayInicial[i][j])
-							arrayErosionado[i][j] = arrayInicial[i][j - 1];
-						// Arriba
-						if (arrayInicial[i - 1][j] < arrayInicial[i][j])
-							arrayErosionado[i][j] = arrayInicial[i - 1][j];
+						// Izquierda y Arriba
+						if (arrayInicial[i - 1][j - 1] > arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i - 1][j - 1];
+						// Izquierda y Abajo
+						if (arrayInicial[i + 1][j - 1] > arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i + 1][j - 1];
 						
 					} // Otras columnas
 					else {
-						// Izquierda
-						if (arrayInicial[i][j - 1] < arrayInicial[i][j])
-							arrayErosionado[i][j] = arrayInicial[i][j - 1];
-						// Arriba
-						if (arrayInicial[i - 1][j] < arrayInicial[i][j])
-							arrayErosionado[i][j] = arrayInicial[i - 1][j];
-						
+						// Izquierda y Arriba
+						if (arrayInicial[i - 1][j - 1] > arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i - 1][j - 1];
+						// Izquierda y Abajo
+						if (arrayInicial[i + 1][j - 1] > arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i + 1][j - 1];
+						// Derecha y Arriba
+						if (arrayInicial[i - 1][j + 1] > arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i - 1][j + 1];
+						// Derecha y Abajo
+						if (arrayInicial[i + 1][j + 1] > arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i + 1][j + 1];
 					}
 				}
 
 			}
 		}
-		return arrayErosionado;
+		return arrayDilatado;
 	}
-	
+	private int[][] erosionElem6(int[][] arrayInicial) {
+		// Creamos el array que guardara los resultados
+		int[][] arrayDilatado = new int[arrayInicial.length][arrayInicial[0].length];
+		for (int i = 0; i < arrayInicial.length; i++) {
+			for (int j = 0; j < arrayInicial[i].length; j++) {
+				// Copiamos valores para los casos donde ninguna condicion se cumpla.
+				arrayDilatado[i][j] = arrayInicial[i][j];
+				// Primera Fila
+				if (i == 0) {
+					// Primera Columna
+					if (j == 0) {
+						// Derecha y Abajo
+						if (arrayInicial[i + 1][j + 1] < arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i + 1][j + 1];
+
+
+					}
+					// Ultima Columna
+					else if (j == arrayInicial[i].length - 1) {
+						// Izquierda y Abajo
+						if (arrayInicial[i + 1][j - 1] < arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i + 1][j - 1];
+
+					}
+					// Otras columnas
+					else {
+						// Derecha y Abajo
+						if (arrayInicial[i + 1][j + 1] < arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i + 1][j + 1];
+						// Izquierda y Abajo
+						if (arrayInicial[i + 1][j - 1] < arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i + 1][j - 1];
+						
+					}
+					
+
+				}
+				// Ultima fila
+				else if (i == arrayInicial.length - 1) {
+					// Primera Columna
+					if (j == 0) {
+						// Derecha y Arriba
+						if (arrayInicial[i - 1][j + 1] < arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i - 1][j + 1];
+
+
+					}
+					// Ultima Columna
+					else if (j == arrayInicial[i].length - 1) {
+
+						// Izquierda y Arriba
+						if (arrayInicial[i - 1][j - 1] < arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i - 1][j - 1];
+					
+					}
+					// Otras columnas
+					else {
+						// Derecha y Arriba
+						if (arrayInicial[i - 1][j + 1] < arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i - 1][j + 1];
+						// Izquierda y Arriba
+						if (arrayInicial[i - 1][j - 1] < arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i - 1][j - 1];
+					}
+
+					// Las demas filas
+				} else {
+					// Primera Columna
+					if (j == 0) {
+						// Derecha y Arriba
+						if (arrayInicial[i - 1][j + 1] < arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i - 1][j + 1];
+						// Derecha y Abajo
+						if (arrayInicial[i + 1][j + 1] < arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i + 1][j + 1];
+
+					} // Ultima Columna
+					else if (j == arrayInicial[i].length - 1) {
+						// Izquierda y Arriba
+						if (arrayInicial[i - 1][j - 1] < arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i - 1][j - 1];
+						// Izquierda y Abajo
+						if (arrayInicial[i + 1][j - 1] < arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i + 1][j - 1];
+						
+					} // Otras columnas
+					else {
+						// Izquierda y Arriba
+						if (arrayInicial[i - 1][j - 1] < arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i - 1][j - 1];
+						// Izquierda y Abajo
+						if (arrayInicial[i + 1][j - 1] < arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i + 1][j - 1];
+						// Derecha y Arriba
+						if (arrayInicial[i - 1][j + 1] < arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i - 1][j + 1];
+						// Derecha y Abajo
+						if (arrayInicial[i + 1][j + 1] < arrayInicial[i][j])
+							arrayDilatado[i][j] = arrayInicial[i + 1][j + 1];
+					}
+				}
+
+			}
+		}
+		return arrayDilatado;
+	}
+		
 	//Metodo para imprimir una matriz
 	private void imprimirMatriz(int[][] matriz) {
 		for (int i = 0; i < matriz.length; i++) {
