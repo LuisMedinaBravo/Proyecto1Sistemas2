@@ -1,4 +1,4 @@
-package proyectoSIST2;
+package Proyecto1;
 /*
  * The MIT License (MIT)
  *
