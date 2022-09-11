@@ -43,8 +43,7 @@ public class LokoRenzo {
                     
                     
                     s1 = new Suma(1, matrizLeida);
-		
-                    s2 = new Suma(2, matrizLeida);
+		    s2 = new Suma(2, matrizLeida);
                     
                     s1.start();
                     s2.start();
