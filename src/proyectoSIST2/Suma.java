@@ -1,5 +1,5 @@
 
-package proyectoSIST2;
+package Proyecto1;
 
 public class Suma extends Thread {
 
@@ -93,6 +93,9 @@ public int[][] getImagenResultado() {
 		int[][] arrayDilatado = new int[arrayInicial.length][arrayInicial[0].length];
 		for (int i = 0; i < arrayInicial.length; i++) {
 			for (int j = 0; j < arrayInicial[i].length; j++) {
+                            
+                                if(this.id==1){
+                            
 				// Copiamos valores para los casos donde ninguna condicion se cumpla.
 				arrayDilatado[i][j] = arrayInicial[i][j];
 				// Primera Fila
@@ -168,7 +171,10 @@ public int[][] getImagenResultado() {
 					}
 
 					// Las demas filas
-				} else {
+				} 
+                                
+                                }
+                                else if(this.id==2) {
 					// Primera Columna
 					if (j == 0) {
 						// Derecha
@@ -219,6 +225,10 @@ public int[][] getImagenResultado() {
 		int[][] arrayErosionado = new int[arrayInicial.length][arrayInicial[0].length];
 		for (int i = 0; i < arrayInicial.length; i++) {
 			for (int j = 0; j < arrayInicial[i].length; j++) {
+                            
+                                if(this.id == 1){
+                                    
+                                
 				// Copiamos valores para los casos donde ninguna condicion se cumpla.
 				arrayErosionado[i][j] = arrayInicial[i][j];
 				// Primera Fila
@@ -293,8 +303,8 @@ public int[][] getImagenResultado() {
 							arrayErosionado[i][j] = arrayInicial[i][j - 1];
 					}
 
-					// Las demas filas
-				} else {
+                                }// Las demas filas
+				} else if(this.id==2){
 					// Primera Columna
 					if (j == 0) {
 						// Derecha
