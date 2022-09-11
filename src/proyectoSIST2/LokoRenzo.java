@@ -202,6 +202,8 @@ public class LokoRenzo {
                         int[][] matrizLeida = pmgEditor.read(new File ("imgEdit.pgm"));
 
                         s1 = new Suma(1, matrizLeida);
+                        s1.dilatacionElem6(matrizLeida);
+                        s1.erosionElem6(matrizLeida);
                      
                     }
                     
