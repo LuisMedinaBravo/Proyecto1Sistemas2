@@ -7,7 +7,7 @@ public class LokoRenzo {
 	public static void main(String args[]) throws Exception {
 
 		// iniciar hilos
-		Suma s1, s2;
+		Suma s1, s2,s3,s4;
                 int opcion=0;
                 int opcion1=0;
                 int opcion2=0;
@@ -37,35 +37,39 @@ public class LokoRenzo {
                 if(opcion1==1 && opcion==1){
                     
                     
-                    
                     PGMIO pmgEditor = new PGMIO();
-                    int[][] matrizLeida = pmgEditor.read(new File ("imgEdit.pgm"));
                     
+                    int[][] matrizLeida = pmgEditor.read(new File ("imgEdit2.pgm"));
                     
                     s1 = new Suma(1, matrizLeida);
 		    s2 = new Suma(2, matrizLeida);
+              
                     
                     s1.start();
                     s2.start();
+                   
 
                     try {
 
                             s1.join();
                             s2.join();
+                           
+                            
 
                     } catch (Exception e) {
 
                             // imprimir = new Suma(-1);
                             // imprimir.Imprimir();
-
+                            
                     }
-                    //Escribimos el resultado
-                    while (s1.fin==false && s2.fin==false) {
-
-
+                    if(s1.fin==true && s2.fin==true){
+                        pmgEditor.write(s1.getImagenResultado(), new File ("imagenSalidaDilatacion.pgm"));
+                        pmgEditor.write(s2.getImagenResultado2(), new File ("imagenSalidaErosion.pgm"));
                     }
-                    pmgEditor.write(s1.getImagenResultado(), new File ("imagenSalida.pgm"));
-
+                    
+                  
+                    
+                    
                     
                     //SECUENCIAL
                 }else if (opcion1==1 && opcion==2){
@@ -74,15 +78,15 @@ public class LokoRenzo {
                     int[][] matrizLeida = pmgEditor.read(new File ("imgEdit.pgm"));
                     
                     s1 = new Suma(1, matrizLeida);
-                    s1.dilatacionElem1(matrizLeida);
-                    s1.erosionElem1(matrizLeida);
+                    s1.dilatacionElem1Normal(matrizLeida);
+                    pmgEditor.write(s1.getImagenResultado(), new File ("imagenSalidaDila.pgm"));
+                    s1.erosionElem1Normal(matrizLeida);
+                    pmgEditor.write(s1.getImagenResultado2(), new File ("imagenSalidaEro.pgm"));
                 }
                 
                 
                 //HILOS
                 else if(opcion1== 2 && opcion== 1){
-                    
-                    
                     
                     
                     while(opcion2==0){
@@ -148,22 +152,26 @@ public class LokoRenzo {
                     if(opcion2==1){
                         
                         PGMIO pmgEditor = new PGMIO();
-                        int[][] matrizLeida = pmgEditor.read(new File ("imgEdit.pgm"));
+                        int[][] matrizLeida = pmgEditor.read(new File ("imgEdit2.pgm"));
 
 
                         s1 = new Suma(1, matrizLeida);
-                        s1.dilatacionElem1(matrizLeida);
-                        s1.erosionElem1(matrizLeida);
+                        s1.dilatacionElem1Normal(matrizLeida);
+                        pmgEditor.write(s1.getImagenResultado(), new File ("imagenSalidaDilata.pgm"));
+                        s1.erosionElem1Normal(matrizLeida);
+                        pmgEditor.write(s1.getImagenResultado2(), new File ("imagenSalidaErosiona.pgm"));
                         
                     }
                     else if(opcion2==2){
                         
                         PGMIO pmgEditor = new PGMIO();
-                        int[][] matrizLeida = pmgEditor.read(new File ("imgEdit.pgm"));
+                        int[][] matrizLeida = pmgEditor.read(new File ("imgEdit2.pgm"));
 
                         s1 = new Suma(1, matrizLeida);
-                        s1.dilatacionElem2(matrizLeida);
-                        s1.erosionElem2(matrizLeida);
+                        s1.dilatacionElem2Normal(matrizLeida);
+                        pmgEditor.write(s1.getImagenResultado(), new File ("imagenSalidaDilata.pgm"));
+                        s1.erosionElem2Normal(matrizLeida);
+                        pmgEditor.write(s1.getImagenResultado2(), new File ("imagenSalidaErosiona.pgm"));
                         
                         
                     }
@@ -171,40 +179,50 @@ public class LokoRenzo {
                         
                         
                         PGMIO pmgEditor = new PGMIO();
-                        int[][] matrizLeida = pmgEditor.read(new File ("imgEdit.pgm"));
+                        int[][] matrizLeida = pmgEditor.read(new File ("imgEdit2.pgm"));
 
                         s1 = new Suma(1, matrizLeida);
-                        s1.dilatacionElem3(matrizLeida);
-                        s1.erosionElem3(matrizLeida);
+                        s1.dilatacionElem3Normal(matrizLeida);
+                        pmgEditor.write(s1.getImagenResultado(), new File ("imagenSalidaDilata.pgm"));
+                        s1.erosionElem3Normal(matrizLeida);
+                        pmgEditor.write(s1.getImagenResultado2(), new File ("imagenSalidaErosiona.pgm"));
                     }
                     else if(opcion2==4){
                         
                         PGMIO pmgEditor = new PGMIO();
-                        int[][] matrizLeida = pmgEditor.read(new File ("imgEdit.pgm"));
+                        int[][] matrizLeida = pmgEditor.read(new File ("imgEdit2.pgm"));
 
                         s1 = new Suma(1, matrizLeida);
-                        s1.dilatacionElem4(matrizLeida);
-                        s1.erosionElem4(matrizLeida);
+                        s1.dilatacionElem4Normal(matrizLeida);
+                        pmgEditor.write(s1.getImagenResultado(), new File ("imagenSalidaDilata.pgm"));
+                        s1.erosionElem4Normal(matrizLeida);
+                        pmgEditor.write(s1.getImagenResultado2(), new File ("imagenSalidaErosiona.pgm"));
                     }
                     else if(opcion2==5){
                         
                         PGMIO pmgEditor = new PGMIO();
-                        int[][] matrizLeida = pmgEditor.read(new File ("imgEdit.pgm"));
-
-                        s1 = new Suma(1, matrizLeida);
-                        s1.dilatacionElem5(matrizLeida);
-                        s1.erosionElem5(matrizLeida);
                         
+                        int[][] matrizLeida = pmgEditor.read(new File ("imgEdit2.pgm"));
+                        
+                        
+                        s1 = new Suma(1, matrizLeida);
+                        s1.dilatacionElem5Normal(matrizLeida);
+                        pmgEditor.write(s1.getImagenResultado(), new File ("imagenSalidaDilata.pgm"));
+                        s1.erosionElem5Normal(matrizLeida);
+                        pmgEditor.write(s1.getImagenResultado2(), new File ("imagenSalidaErosiona.pgm"));
+                    
+                    
                     }
                     else if(opcion2==6){
                         
                         PGMIO pmgEditor = new PGMIO();
-                        int[][] matrizLeida = pmgEditor.read(new File ("imgEdit.pgm"));
+                        int[][] matrizLeida = pmgEditor.read(new File ("imgEdit2.pgm"));
 
                         s1 = new Suma(1, matrizLeida);
-                        s1.dilatacionElem6(matrizLeida);
-                        s1.erosionElem6(matrizLeida);
-                     
+                        s1.dilatacionElem6Normal(matrizLeida);
+                        pmgEditor.write(s1.getImagenResultado(), new File ("imagenSalidaDilata.pgm"));
+                        s1.erosionElem6Normal(matrizLeida);
+                        pmgEditor.write(s1.getImagenResultado2(), new File ("imagenSalidaErosiona.pgm"));
                     }
                     
                 }
