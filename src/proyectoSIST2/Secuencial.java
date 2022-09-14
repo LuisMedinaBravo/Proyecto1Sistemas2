@@ -1,5 +1,5 @@
 
-package proyectoSIST2;
+package Proyecto1;
 
 public class Secuencial {
 

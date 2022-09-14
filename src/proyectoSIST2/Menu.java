@@ -1,32 +1,70 @@
-package proyectoSIST2;
+package Proyecto1;
 
 import java.io.File;
+import java.io.FileReader;
 import java.util.Scanner;
 
 public class Menu {
+    
 	public static void main(String args[]) throws Exception {
 
 		// Iniciar hilos
 		Secuencial s1;
+                
+                boolean archivo = false;
 		int opcion = 0;
 		int opcion1 = 0;
 		int opcion2 = 0;
+                String nombre_archivo="";
+		
+                Scanner entrada = new Scanner(System.in);
+                
+                System.out.println("Ingrese el nombre de la imagen a utilizar:");
+                System.out.println("Por ejemplo: imgEdit");
+                
+                
+                while(archivo==false){
+                
+                
+                    nombre_archivo=entrada.nextLine();
+                
+                    FileReader fr;
+        
+                    try{
+                        //Si existe el archivo
+                        fr = new FileReader(nombre_archivo+".pgm");
+                        //System.out.println("Existe");
+                        archivo=true;
 
-		Scanner entrada = new Scanner(System.in);
 
-		// Elegir Problema
+                    }catch(Exception e){
+                        //System.out.println("No existe\n");
+                        //No existe el archivo
+                        //System.out.println("No existe");
+                        System.out.println("Archivo no se encuentra en el directorio");
+                        System.out.println("Ingrese otro archivo: ");
+
+                    }  
+
+                }
+                
+                
+
+		// Elegir Problema 1 o 2
 		while (opcion1 == 0) {
 
-			System.out.println("Menu");
+			System.out.println("\n\nMenu");
 			System.out.println("1) Problema 1");
 			System.out.println("2) Problema 2");
 
 			opcion1 = entrada.nextInt();
-		}
-		// Elegir Hilos o Secuencial
+                        
+                }
+		
+                // Elegir Hilos o Secuencial
 		while (opcion == 0) {
 
-			System.out.println("Escoger forma de trabajar");
+			System.out.println("\nEscoger forma de trabajar");
 			System.out.println("1) Hilos");
 			System.out.println("2) Secuencial");
 
@@ -34,10 +72,10 @@ public class Menu {
 		}
 
 		//Cambiar el nombre de la imagen que se va a leer
-		String nombre_archivo = "baboon.pgm";
+		
 		
 		//PGMIO pmgEditor = new PGMIO();
-		int[][] matrizLeida = PGMIO.read(new File(nombre_archivo));
+		int[][] matrizLeida = PGMIO.read(new File(nombre_archivo+".pgm"));
 
 		// Problema 1 - HILOS
 		if (opcion1 == 1 && opcion == 1) {
@@ -65,7 +103,7 @@ public class Menu {
 			// Finalizamos el tiempo luego de realizar los filtros
 			final long tiempoLlegada = System.currentTimeMillis();
 
-			System.out.println("Tiempo total de ejecución: " + (tiempoLlegada - tiempoPartida) + " msec");
+			System.out.println("Tiempo total de ejecuciï¿½n: " + (tiempoLlegada - tiempoPartida) + " msec");
 
 			if (p1.fin == true && p2.fin == true) {
 				PGMIO.write(p1.getImagenResultado(), new File("imgSalidaElem1Dilatacion.pgm"));
@@ -87,7 +125,7 @@ public class Menu {
 
 			// Finalizamos el tiempo luego de realizar los filtros
 			final long tiempoLlegada = System.currentTimeMillis();
-			System.out.println("Tiempo total de ejecución: " + (tiempoLlegada - tiempoPartida) + " msec");
+			System.out.println("Tiempo total de ejecuciï¿½n: " + (tiempoLlegada - tiempoPartida) + " msec");
 		}
 
 		// Problema 2 - HILOS
@@ -95,12 +133,12 @@ public class Menu {
 
 			while (opcion2 == 0) {
 
-				System.out.println("Escoger Figura");
+				System.out.println("\nEscoger Figura");
 				System.out.println("1) Figura 1 (Signo +)");
 				System.out.println("2) Figura 2 (Izquierda - Abajo)");
 				System.out.println("3) Figura 3 (Izquierda - Arriba)");
 				System.out.println("4) Figura 4 (Izquierda - Derecha)");
-				System.out.println("5) Figura 5 (Arriba)");
+				System.out.println("5) Figura 5 (Abajo)");
 				System.out.println("6) Figura 6 (Signo x)");
 
 				opcion2 = entrada.nextInt();
@@ -161,18 +199,18 @@ public class Menu {
 				}
 			}
 
-			System.out.println("Tiempo total de ejecución: " + (tiempoLlegada - tiempoPartida) + " msec");
+			System.out.println("Tiempo total de ejecuciï¿½n: " + (tiempoLlegada - tiempoPartida) + " msec");
 			// Problema 2 - SECUENCIAL
 		} else if (opcion1 == 2 && opcion == 2) {
 
 			while (opcion2 == 0) {
 
-				System.out.println("Menu");
+				System.out.println("\nEscoger Figura");
 				System.out.println("1) Figura 1 (Signo +)");
 				System.out.println("2) Figura 2 (Izquierda - Abajo)");
 				System.out.println("3) Figura 3 (Izquierda - Arriba)");
 				System.out.println("4) Figura 4 (Izquierda - Derecha)");
-				System.out.println("5) Figura 5 (Arriba)");
+				System.out.println("5) Figura 5 (Abajo)");
 				System.out.println("6) Figura 6 (Signo x)");
 
 				opcion2 = entrada.nextInt();
@@ -194,7 +232,7 @@ public class Menu {
 				PGMIO.write(s1.getImagenResultado2(), new File("imgSalidaElem1Erosion.pgm.pgm"));
 				// Finalizamos el tiempo luego de realizar los filtros
 				final long tiempoLlegada = System.currentTimeMillis();
-				System.out.println("Tiempo total de ejecución: " + (tiempoLlegada - tiempoPartida) + " msec");
+				System.out.println("Tiempo total de ejecuciï¿½n: " + (tiempoLlegada - tiempoPartida) + " msec");
 			// Figura 2
 			} else if (opcion2 == 2) {
 
@@ -207,7 +245,7 @@ public class Menu {
 				PGMIO.write(s1.getImagenResultado2(), new File("imgSalidaElem2Erosion.pgm"));
 				// Finalizamos el tiempo luego de realizar los filtros
 				final long tiempoLlegada = System.currentTimeMillis();
-				System.out.println("Tiempo total de ejecución: " + (tiempoLlegada - tiempoPartida) + " msec");
+				System.out.println("Tiempo total de ejecuciï¿½n: " + (tiempoLlegada - tiempoPartida) + " msec");
 			// Figura 3
 			} else if (opcion2 == 3) {
 
@@ -219,7 +257,7 @@ public class Menu {
 				PGMIO.write(s1.getImagenResultado2(), new File("imgSalidaElem3Erosion.pgm"));
 				// Finalizamos el tiempo luego de realizar los filtros
 				final long tiempoLlegada = System.currentTimeMillis();
-				System.out.println("Tiempo total de ejecución: " + (tiempoLlegada - tiempoPartida) + " msec");
+				System.out.println("Tiempo total de ejecuciï¿½n: " + (tiempoLlegada - tiempoPartida) + " msec");
 				
 			// Figura 4
 				
@@ -234,7 +272,7 @@ public class Menu {
 				PGMIO.write(s1.getImagenResultado2(), new File("imgSalidaElem4Erosion.pgm"));
 				// Finalizamos el tiempo luego de realizar los filtros
 				final long tiempoLlegada = System.currentTimeMillis();
-				System.out.println("Tiempo total de ejecución: " + (tiempoLlegada - tiempoPartida) + " msec");
+				System.out.println("Tiempo total de ejecuciï¿½n: " + (tiempoLlegada - tiempoPartida) + " msec");
 				
 			// Figura 5
 				
@@ -247,7 +285,7 @@ public class Menu {
 				PGMIO.write(s1.getImagenResultado2(), new File("imgSalidaElem5Erosion.pgm"));
 				// Finalizamos el tiempo luego de realizar los filtros
 				final long tiempoLlegada = System.currentTimeMillis();
-				System.out.println("Tiempo total de ejecución: " + (tiempoLlegada - tiempoPartida) + " msec");
+				System.out.println("Tiempo total de ejecuciï¿½n: " + (tiempoLlegada - tiempoPartida) + " msec");
 				
 			// Figura 6
 				
@@ -260,7 +298,7 @@ public class Menu {
 				PGMIO.write(s1.getImagenResultado2(), new File("imgSalidaElem6Erosion.pgm"));
 				// Finalizamos el tiempo luego de realizar los filtros
 				final long tiempoLlegada = System.currentTimeMillis();
-				System.out.println("Tiempo total de ejecución: " + (tiempoLlegada - tiempoPartida) + " msec");
+				System.out.println("Tiempo total de ejecuciï¿½n: " + (tiempoLlegada - tiempoPartida) + " msec");
 			}
 
 		}
